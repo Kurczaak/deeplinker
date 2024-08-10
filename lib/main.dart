@@ -43,6 +43,10 @@ class _MaterialAppRouterState extends State<MaterialAppRouter> {
         if (state is Authenticated) {
           _appRouter.popAndPush(const DashboardRoute());
         }
+        if (state is Unauthenticated) {
+          _appRouter.pushAndPopUntil(const LoginRoute(),
+              predicate: (route) => false);
+        }
       },
       child: MaterialApp.router(
         routerConfig: _appRouter.config(
