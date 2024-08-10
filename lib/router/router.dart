@@ -21,6 +21,9 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: BookDetailsRoute.page,
         ),
+        AutoRoute(
+          page: AuthorDetailsRoute.page,
+        ),
       ]);
 
   AutoRoute get authorRoutes =>
