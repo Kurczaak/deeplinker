@@ -16,7 +16,7 @@ class BooksListPage extends StatelessWidget {
           final book = booksMocks[index];
           return ListTile(
             title: Text(book.title),
-            subtitle: Text(book.author),
+            subtitle: Text(book.author.name),
             onTap: () {
               context.router.push(
                 BookDetailsRoute(
