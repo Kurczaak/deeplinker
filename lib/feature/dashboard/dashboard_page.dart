@@ -11,7 +11,7 @@ class DashboardPage extends StatelessWidget {
     return AutoTabsScaffold(
       routes: const [
         BooksListRoute(),
-        BooksListRoute(),
+        AuthorsListRoute(),
         BooksListRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {

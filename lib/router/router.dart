@@ -8,17 +8,29 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           initial: true,
           page: DashboardRoute.page,
-          children: [
-            AutoRoute(initial: true, page: BookListShellRoute.page, children: [
-              AutoRoute(
-                initial: true,
-                page: BooksListRoute.page,
-              ),
-              AutoRoute(
-                page: BookDetailsRoute.page,
-              ),
-            ]),
-          ],
+          children: [bookRoutes, authorRoutes],
         ),
       ];
+
+  AutoRoute get bookRoutes =>
+      AutoRoute(initial: true, page: BooksShellRoute.page, children: [
+        AutoRoute(
+          initial: true,
+          page: BooksListRoute.page,
+        ),
+        AutoRoute(
+          page: BookDetailsRoute.page,
+        ),
+      ]);
+
+  AutoRoute get authorRoutes =>
+      AutoRoute(page: AuthorsShellRoute.page, children: [
+        AutoRoute(
+          initial: true,
+          page: AuthorsListRoute.page,
+        ),
+        AutoRoute(
+          page: AuthorDetailsRoute.page,
+        ),
+      ]);
 }
