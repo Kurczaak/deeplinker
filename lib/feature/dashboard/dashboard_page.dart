@@ -12,7 +12,7 @@ class DashboardPage extends StatelessWidget {
       routes: const [
         BooksListRoute(),
         AuthorsListRoute(),
-        BooksListRoute(),
+        ProfileRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(

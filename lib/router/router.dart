@@ -8,7 +8,11 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           initial: true,
           page: DashboardRoute.page,
-          children: [bookRoutes, authorRoutes],
+          children: [
+            bookRoutes,
+            authorRoutes,
+            profileRoutes,
+          ],
         ),
       ];
 
@@ -36,4 +40,8 @@ class AppRouter extends RootStackRouter {
           page: AuthorDetailsRoute.page,
         ),
       ]);
+
+  AutoRoute get profileRoutes => AutoRoute(
+        page: ProfileRoute.page,
+      );
 }

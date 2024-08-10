@@ -8,7 +8,7 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i8;
+import 'package:auto_route/auto_route.dart' as _i9;
 import 'package:deeplinker/feature/author_details/author_details_page.dart'
     as _i1;
 import 'package:deeplinker/feature/authors_list/authors_list_page.dart' as _i2;
@@ -17,18 +17,19 @@ import 'package:deeplinker/feature/book_details/book_details_page.dart' as _i4;
 import 'package:deeplinker/feature/books_list/books_list_page.dart' as _i5;
 import 'package:deeplinker/feature/books_list/books_shell_page.dart' as _i6;
 import 'package:deeplinker/feature/dashboard/dashboard_page.dart' as _i7;
-import 'package:deeplinker/model/author.dart' as _i10;
-import 'package:deeplinker/model/book.dart' as _i11;
-import 'package:flutter/material.dart' as _i9;
+import 'package:deeplinker/feature/profile/profile_page.dart' as _i8;
+import 'package:deeplinker/model/author.dart' as _i11;
+import 'package:deeplinker/model/book.dart' as _i12;
+import 'package:flutter/material.dart' as _i10;
 
 /// generated route for
 /// [_i1.AuthorDetailsPage]
-class AuthorDetailsRoute extends _i8.PageRouteInfo<AuthorDetailsRouteArgs> {
+class AuthorDetailsRoute extends _i9.PageRouteInfo<AuthorDetailsRouteArgs> {
   AuthorDetailsRoute({
-    _i9.Key? key,
-    required _i10.Author author,
+    _i10.Key? key,
+    required _i11.Author author,
     required int authorId,
-    List<_i8.PageRouteInfo>? children,
+    List<_i9.PageRouteInfo>? children,
   }) : super(
           AuthorDetailsRoute.name,
           args: AuthorDetailsRouteArgs(
@@ -42,7 +43,7 @@ class AuthorDetailsRoute extends _i8.PageRouteInfo<AuthorDetailsRouteArgs> {
 
   static const String name = 'AuthorDetailsRoute';
 
-  static _i8.PageInfo page = _i8.PageInfo(
+  static _i9.PageInfo page = _i9.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<AuthorDetailsRouteArgs>();
@@ -62,9 +63,9 @@ class AuthorDetailsRouteArgs {
     required this.authorId,
   });
 
-  final _i9.Key? key;
+  final _i10.Key? key;
 
-  final _i10.Author author;
+  final _i11.Author author;
 
   final int authorId;
 
@@ -76,8 +77,8 @@ class AuthorDetailsRouteArgs {
 
 /// generated route for
 /// [_i2.AuthorsListPage]
-class AuthorsListRoute extends _i8.PageRouteInfo<void> {
-  const AuthorsListRoute({List<_i8.PageRouteInfo>? children})
+class AuthorsListRoute extends _i9.PageRouteInfo<void> {
+  const AuthorsListRoute({List<_i9.PageRouteInfo>? children})
       : super(
           AuthorsListRoute.name,
           initialChildren: children,
@@ -85,7 +86,7 @@ class AuthorsListRoute extends _i8.PageRouteInfo<void> {
 
   static const String name = 'AuthorsListRoute';
 
-  static _i8.PageInfo page = _i8.PageInfo(
+  static _i9.PageInfo page = _i9.PageInfo(
     name,
     builder: (data) {
       return const _i2.AuthorsListPage();
@@ -95,8 +96,8 @@ class AuthorsListRoute extends _i8.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.AuthorsShellPage]
-class AuthorsShellRoute extends _i8.PageRouteInfo<void> {
-  const AuthorsShellRoute({List<_i8.PageRouteInfo>? children})
+class AuthorsShellRoute extends _i9.PageRouteInfo<void> {
+  const AuthorsShellRoute({List<_i9.PageRouteInfo>? children})
       : super(
           AuthorsShellRoute.name,
           initialChildren: children,
@@ -104,7 +105,7 @@ class AuthorsShellRoute extends _i8.PageRouteInfo<void> {
 
   static const String name = 'AuthorsShellRoute';
 
-  static _i8.PageInfo page = _i8.PageInfo(
+  static _i9.PageInfo page = _i9.PageInfo(
     name,
     builder: (data) {
       return const _i3.AuthorsShellPage();
@@ -114,12 +115,12 @@ class AuthorsShellRoute extends _i8.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.BookDetailsPage]
-class BookDetailsRoute extends _i8.PageRouteInfo<BookDetailsRouteArgs> {
+class BookDetailsRoute extends _i9.PageRouteInfo<BookDetailsRouteArgs> {
   BookDetailsRoute({
-    _i9.Key? key,
-    required _i11.Book book,
+    _i10.Key? key,
+    required _i12.Book book,
     required int bookId,
-    List<_i8.PageRouteInfo>? children,
+    List<_i9.PageRouteInfo>? children,
   }) : super(
           BookDetailsRoute.name,
           args: BookDetailsRouteArgs(
@@ -133,7 +134,7 @@ class BookDetailsRoute extends _i8.PageRouteInfo<BookDetailsRouteArgs> {
 
   static const String name = 'BookDetailsRoute';
 
-  static _i8.PageInfo page = _i8.PageInfo(
+  static _i9.PageInfo page = _i9.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<BookDetailsRouteArgs>();
@@ -153,9 +154,9 @@ class BookDetailsRouteArgs {
     required this.bookId,
   });
 
-  final _i9.Key? key;
+  final _i10.Key? key;
 
-  final _i11.Book book;
+  final _i12.Book book;
 
   final int bookId;
 
@@ -167,8 +168,8 @@ class BookDetailsRouteArgs {
 
 /// generated route for
 /// [_i5.BooksListPage]
-class BooksListRoute extends _i8.PageRouteInfo<void> {
-  const BooksListRoute({List<_i8.PageRouteInfo>? children})
+class BooksListRoute extends _i9.PageRouteInfo<void> {
+  const BooksListRoute({List<_i9.PageRouteInfo>? children})
       : super(
           BooksListRoute.name,
           initialChildren: children,
@@ -176,7 +177,7 @@ class BooksListRoute extends _i8.PageRouteInfo<void> {
 
   static const String name = 'BooksListRoute';
 
-  static _i8.PageInfo page = _i8.PageInfo(
+  static _i9.PageInfo page = _i9.PageInfo(
     name,
     builder: (data) {
       return const _i5.BooksListPage();
@@ -186,8 +187,8 @@ class BooksListRoute extends _i8.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.BooksShellPage]
-class BooksShellRoute extends _i8.PageRouteInfo<void> {
-  const BooksShellRoute({List<_i8.PageRouteInfo>? children})
+class BooksShellRoute extends _i9.PageRouteInfo<void> {
+  const BooksShellRoute({List<_i9.PageRouteInfo>? children})
       : super(
           BooksShellRoute.name,
           initialChildren: children,
@@ -195,7 +196,7 @@ class BooksShellRoute extends _i8.PageRouteInfo<void> {
 
   static const String name = 'BooksShellRoute';
 
-  static _i8.PageInfo page = _i8.PageInfo(
+  static _i9.PageInfo page = _i9.PageInfo(
     name,
     builder: (data) {
       return const _i6.BooksShellPage();
@@ -205,8 +206,8 @@ class BooksShellRoute extends _i8.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.DashboardPage]
-class DashboardRoute extends _i8.PageRouteInfo<void> {
-  const DashboardRoute({List<_i8.PageRouteInfo>? children})
+class DashboardRoute extends _i9.PageRouteInfo<void> {
+  const DashboardRoute({List<_i9.PageRouteInfo>? children})
       : super(
           DashboardRoute.name,
           initialChildren: children,
@@ -214,10 +215,29 @@ class DashboardRoute extends _i8.PageRouteInfo<void> {
 
   static const String name = 'DashboardRoute';
 
-  static _i8.PageInfo page = _i8.PageInfo(
+  static _i9.PageInfo page = _i9.PageInfo(
     name,
     builder: (data) {
       return const _i7.DashboardPage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i8.ProfilePage]
+class ProfileRoute extends _i9.PageRouteInfo<void> {
+  const ProfileRoute({List<_i9.PageRouteInfo>? children})
+      : super(
+          ProfileRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfileRoute';
+
+  static _i9.PageInfo page = _i9.PageInfo(
+    name,
+    builder: (data) {
+      return const _i8.ProfilePage();
     },
   );
 }
