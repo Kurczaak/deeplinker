@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 
@@ -13,5 +15,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<Logout>((event, emit) {
       emit(Unauthenticated());
     });
+
+    on<Init>((event, emit) {
+      authTimer?.cancel();
+      authTimer = Timer.periodic(const Duration(seconds: 60), (_) {
+        add(Logout());
+      });
+    });
   }
+  Timer? authTimer;
 }
