@@ -45,7 +45,6 @@ class AppRouter extends RootStackRouter {
   ];
 
   AutoRoute get bookRoutes => AutoRoute(
-        initial: true,
         page: BooksShellRoute.page,
         children: [
           AutoRoute(
