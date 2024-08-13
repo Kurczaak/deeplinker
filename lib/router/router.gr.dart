@@ -17,10 +17,8 @@ import 'package:deeplinker/feature/book_details/book_details_page.dart' as _i4;
 import 'package:deeplinker/feature/books_list/books_list_page.dart' as _i5;
 import 'package:deeplinker/feature/books_list/books_shell_page.dart' as _i6;
 import 'package:deeplinker/feature/dashboard/dashboard_page.dart' as _i7;
-import 'package:deeplinker/feature/login/login_page.dart' as _i8;
+import 'package:deeplinker/feature/error/error_page.dart' as _i8;
 import 'package:deeplinker/feature/profile/profile_page.dart' as _i9;
-import 'package:deeplinker/model/author.dart' as _i12;
-import 'package:deeplinker/model/book.dart' as _i13;
 import 'package:flutter/material.dart' as _i11;
 
 /// generated route for
@@ -28,14 +26,12 @@ import 'package:flutter/material.dart' as _i11;
 class AuthorDetailsRoute extends _i10.PageRouteInfo<AuthorDetailsRouteArgs> {
   AuthorDetailsRoute({
     _i11.Key? key,
-    required _i12.Author author,
     required int authorId,
     List<_i10.PageRouteInfo>? children,
   }) : super(
           AuthorDetailsRoute.name,
           args: AuthorDetailsRouteArgs(
             key: key,
-            author: author,
             authorId: authorId,
           ),
           rawPathParams: {'id': authorId},
@@ -47,10 +43,12 @@ class AuthorDetailsRoute extends _i10.PageRouteInfo<AuthorDetailsRouteArgs> {
   static _i10.PageInfo page = _i10.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<AuthorDetailsRouteArgs>();
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<AuthorDetailsRouteArgs>(
+          orElse: () =>
+              AuthorDetailsRouteArgs(authorId: pathParams.getInt('id')));
       return _i1.AuthorDetailsPage(
         key: args.key,
-        author: args.author,
         authorId: args.authorId,
       );
     },
@@ -60,19 +58,16 @@ class AuthorDetailsRoute extends _i10.PageRouteInfo<AuthorDetailsRouteArgs> {
 class AuthorDetailsRouteArgs {
   const AuthorDetailsRouteArgs({
     this.key,
-    required this.author,
     required this.authorId,
   });
 
   final _i11.Key? key;
 
-  final _i12.Author author;
-
   final int authorId;
 
   @override
   String toString() {
-    return 'AuthorDetailsRouteArgs{key: $key, author: $author, authorId: $authorId}';
+    return 'AuthorDetailsRouteArgs{key: $key, authorId: $authorId}';
   }
 }
 
@@ -119,14 +114,12 @@ class AuthorsShellRoute extends _i10.PageRouteInfo<void> {
 class BookDetailsRoute extends _i10.PageRouteInfo<BookDetailsRouteArgs> {
   BookDetailsRoute({
     _i11.Key? key,
-    required _i13.Book book,
     required int bookId,
     List<_i10.PageRouteInfo>? children,
   }) : super(
           BookDetailsRoute.name,
           args: BookDetailsRouteArgs(
             key: key,
-            book: book,
             bookId: bookId,
           ),
           rawPathParams: {'id': bookId},
@@ -138,10 +131,11 @@ class BookDetailsRoute extends _i10.PageRouteInfo<BookDetailsRouteArgs> {
   static _i10.PageInfo page = _i10.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<BookDetailsRouteArgs>();
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<BookDetailsRouteArgs>(
+          orElse: () => BookDetailsRouteArgs(bookId: pathParams.getInt('id')));
       return _i4.BookDetailsPage(
         key: args.key,
-        book: args.book,
         bookId: args.bookId,
       );
     },
@@ -151,19 +145,16 @@ class BookDetailsRoute extends _i10.PageRouteInfo<BookDetailsRouteArgs> {
 class BookDetailsRouteArgs {
   const BookDetailsRouteArgs({
     this.key,
-    required this.book,
     required this.bookId,
   });
 
   final _i11.Key? key;
 
-  final _i13.Book book;
-
   final int bookId;
 
   @override
   String toString() {
-    return 'BookDetailsRouteArgs{key: $key, book: $book, bookId: $bookId}';
+    return 'BookDetailsRouteArgs{key: $key, bookId: $bookId}';
   }
 }
 
@@ -225,20 +216,20 @@ class DashboardRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i8.LoginPage]
-class LoginRoute extends _i10.PageRouteInfo<void> {
-  const LoginRoute({List<_i10.PageRouteInfo>? children})
+/// [_i8.ErrorPage]
+class ErrorRoute extends _i10.PageRouteInfo<void> {
+  const ErrorRoute({List<_i10.PageRouteInfo>? children})
       : super(
-          LoginRoute.name,
+          ErrorRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'LoginRoute';
+  static const String name = 'ErrorRoute';
 
   static _i10.PageInfo page = _i10.PageInfo(
     name,
     builder: (data) {
-      return const _i8.LoginPage();
+      return const _i8.ErrorPage();
     },
   );
 }

@@ -1,7 +1,7 @@
-import 'package:deeplinker/feature/auth/bloc/auth_bloc.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:deeplinker/feature/admin/bloc/admin_bloc.dart';
 import 'package:deeplinker/router/navigation_observer.dart';
 import 'package:deeplinker/router/router.dart';
-import 'package:deeplinker/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,26 +33,29 @@ class _MaterialAppRouterState extends State<MaterialAppRouter> {
   @override
   void initState() {
     super.initState();
-    _appRouter = AppRouter(context.read<AuthBloc>());
+    _appRouter = AppRouter(context.read<AdminBloc>());
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {
-        if (state is Authenticated) {
-          _appRouter.popAndPush(const DashboardRoute());
-        }
-        if (state is Unauthenticated) {
-          _appRouter.pushAndPopUntil(const LoginRoute(),
-              predicate: (route) => false);
-        }
-      },
-      child: MaterialApp.router(
-        routerConfig: _appRouter.config(
+    return MaterialApp.router(
+      routerConfig: _appRouter.config(
           navigatorObservers: () => [MyNavigationObserver()],
-        ),
-      ),
+          deepLinkBuilder: (deepLink) {
+            if (deepLink.uri.fragment == '/' || deepLink.uri.fragment.isEmpty) {
+              return DeepLink.defaultPath;
+            }
+            return DeepLink.path(deepLink.uri.fragment);
+            return const DeepLink.path('/authors-shell-route/authors/2');
+            if (deepLink.path.startsWith('/products')) {
+              // continue with the platform link
+              return deepLink;
+            } else {
+              return DeepLink.defaultPath;
+              // or DeepLink.path('/')
+              // or DeepLink([HomeRoute()])
+            }
+          }),
     );
   }
 }
@@ -66,7 +69,7 @@ class GlobalBlocProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => AuthBloc()..add(Init())),
+        BlocProvider(create: (_) => AdminBloc()..add(Init())),
       ],
       child: child,
     );
