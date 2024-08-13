@@ -1,20 +1,17 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:deeplinker/feature/auth/bloc/auth_bloc.dart';
+import 'package:deeplinker/feature/admin/bloc/admin_bloc.dart';
 import 'package:deeplinker/router/router.gr.dart';
 
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
-  final AuthBloc authBloc;
+  final AdminBloc adminBloc;
 
-  AppRouter(this.authBloc);
+  AppRouter(this.adminBloc);
 
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
-          page: LoginRoute.page,
           initial: true,
-        ),
-        AutoRoute(
           page: DashboardRoute.page,
           children: [
             bookRoutes,
@@ -22,40 +19,40 @@ class AppRouter extends RootStackRouter {
             profileRoutes,
           ],
         ),
+        AutoRoute(
+          path: '*',
+          page: ErrorRoute.page,
+        ),
       ];
 
   @override
   late final List<AutoRouteGuard> guards = [
-    AutoRouteGuard.simple(
-      (resolver, router) {
-        if (authBloc.state is Authenticated ||
-            resolver.routeName == LoginRoute.name) {
-          // we continue navigation
-          resolver.next();
-        } else {
-          // else we navigate to the Login page so we get authenticated
-
-          // tip: use resolver.redirect to have the redirected route
-          // automatically removed from the stack when the resolver is completed
-          resolver.redirect(const LoginRoute());
+    AutoRouteGuard.simple((resolver, router) {
+      if (adminBloc.state is Authenticated ||
+          resolver.routeName != AdminProfileRoute.name) {
+        resolver.next();
+      } else {
+        if (router.current.name != ProfileRoute.name) {
+          resolver.redirect(const ProfileRoute());
         }
-      },
-    ),
-    // add more guards here
+      }
+    }),
   ];
 
   AutoRoute get bookRoutes => AutoRoute(
-        initial: true,
         page: BooksShellRoute.page,
         children: [
           AutoRoute(
             initial: true,
+            path: 'books',
             page: BooksListRoute.page,
           ),
           AutoRoute(
             page: BookDetailsRoute.page,
+            path: 'books/:id',
           ),
           AutoRoute(
+            path: 'authors/:id',
             page: AuthorDetailsRoute.page,
           ),
         ],
@@ -67,14 +64,18 @@ class AppRouter extends RootStackRouter {
           AutoRoute(
             initial: true,
             page: AuthorsListRoute.page,
+            path: 'authors',
           ),
           AutoRoute(
             page: AuthorDetailsRoute.page,
+            path: 'authors/:id',
           ),
         ],
       );
 
-  AutoRoute get profileRoutes => AutoRoute(
-        page: ProfileRoute.page,
-      );
+  AutoRoute get profileRoutes =>
+      AutoRoute(page: ProfileShellRoute.page, children: [
+        AutoRoute(page: ProfileRoute.page, path: 'profile'),
+        AutoRoute(page: AdminProfileRoute.page, path: 'admin'),
+      ]);
 }

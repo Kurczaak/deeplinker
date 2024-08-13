@@ -6,12 +6,10 @@ import 'package:flutter/material.dart';
 class AuthorDetailsPage extends StatelessWidget {
   const AuthorDetailsPage({
     super.key,
-    required this.author,
     @PathParam('id') required this.authorId,
   });
 
   final int authorId;
-  final Author author;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +17,8 @@ class AuthorDetailsPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Author Details'),
       ),
-      body: _AuthorDetailsBody(author: author),
+      body: _AuthorDetailsBody(
+          author: authorsMocks.firstWhere((author) => author.id == authorId)),
     );
   }
 }

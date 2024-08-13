@@ -21,7 +21,6 @@ class BooksListPage extends StatelessWidget {
               context.router.push(
                 BookDetailsRoute(
                   bookId: book.id,
-                  book: book,
                 ),
               );
             },

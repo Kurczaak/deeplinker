@@ -24,7 +24,6 @@ class AuthorsListPage extends StatelessWidget {
               context.router.push(
                 AuthorDetailsRoute(
                   authorId: author.id,
-                  author: author,
                 ),
               );
             },
