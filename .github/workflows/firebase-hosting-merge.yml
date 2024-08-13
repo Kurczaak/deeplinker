@@ -23,6 +23,10 @@ jobs:
         run: |
           flutter pub get
           dart run build_runner build --delete-conflicting-outputs
+      - name: 📂 Create .well-known directory and add assetlinks.json
+        run: |
+          mkdir -p web/.well-known
+          echo '[{ "relation": [ "delegate_permission/common.handle_all_urls" ], "target": { "namespace": "android_app", "package_name": "com.example.deeplinker", "sha256_cert_fingerprints": ["${{ secrets.SHA256_CERT_FINGERPRINTS }}"] } }]' > build/web/.well-known/assetlinks.json
 
       - name: 🛠️ Build the application
         run: flutter build web
@@ -32,11 +36,6 @@ jobs:
         with:
           name: build
           path: build/web
-
-      - name: 📂 Create .well-known directory and add assetlinks.json
-        run: |
-          mkdir -p build/web/.well-known
-          echo '[{ "relation": [ "delegate_permission/common.handle_all_urls" ], "target": { "namespace": "android_app", "package_name": "com.example.deeplinker", "sha256_cert_fingerprints": [${{ secrets.SHA256_CERT_FINGERPRINTS }}] } }]' > build/web/.well-known/assetlinks.json
  
   deploy:
     name: "Deploy"
