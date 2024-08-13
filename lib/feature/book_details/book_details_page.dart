@@ -7,12 +7,10 @@ import 'package:flutter/material.dart';
 class BookDetailsPage extends StatelessWidget {
   const BookDetailsPage({
     super.key,
-    required this.book,
     @PathParam('id') required this.bookId,
   });
 
   final int bookId;
-  final Book book;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +18,8 @@ class BookDetailsPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Book Details'),
       ),
-      body: _BookDetailsBody(book: book),
+      body: _BookDetailsBody(
+          book: booksMocks.firstWhere((book) => book.id == bookId)),
     );
   }
 }
@@ -45,7 +44,6 @@ class _BookDetailsBody extends StatelessWidget {
         onPressed: () => context.router.push(
           AuthorDetailsRoute(
             authorId: book.author.id,
-            author: book.author,
           ),
         ),
       ),
