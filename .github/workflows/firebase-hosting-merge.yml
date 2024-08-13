@@ -36,7 +36,7 @@ jobs:
       - name: 📂 Create .well-known directory and add assetlinks.json
         run: |
           mkdir -p build/web/.well-known
-          echo '[{ "relation": [ "delegate_permission/common.handle_all_urls" ], "target": { "namespace": "android_app", "package_name": "com.example.deeplinker", "sha256_cert_fingerprints": [${{ secrets.SHA256_CERT_FINGERPRINTS }}] } }]' > web/.well-known/assetlinks.json
+          echo '[{ "relation": [ "delegate_permission/common.handle_all_urls" ], "target": { "namespace": "android_app", "package_name": "com.example.deeplinker", "sha256_cert_fingerprints": [${{ secrets.SHA256_CERT_FINGERPRINTS }}] } }]' > build/web/.well-known/assetlinks.json
  
   deploy:
     name: "Deploy"
