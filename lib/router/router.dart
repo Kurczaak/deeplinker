@@ -31,6 +31,10 @@ class AppRouter extends RootStackRouter {
       if (adminBloc.state is Authenticated ||
           resolver.routeName != AdminProfileRoute.name) {
         resolver.next();
+      } else {
+        if (router.current.name != ProfileRoute.name) {
+          resolver.redirect(const ProfileRoute());
+        }
       }
     }),
   ];
