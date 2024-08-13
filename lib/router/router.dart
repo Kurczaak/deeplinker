@@ -25,25 +25,15 @@ class AppRouter extends RootStackRouter {
         ),
       ];
 
-  // @override
-  // late final List<AutoRouteGuard> guards = [
-  //   AutoRouteGuard.simple(
-  //     (resolver, router) {
-  //       if (adminBloc.state is Authenticated ||
-  //           resolver.routeName == LoginRoute.name) {
-  //         // we continue navigation
-  //         resolver.next();
-  //       } else {
-  //         // else we navigate to the Login page so we get authenticated
-
-  //         // tip: use resolver.redirect to have the redirected route
-  //         // automatically removed from the stack when the resolver is completed
-  //         resolver.redirect(const LoginRoute());
-  //       }
-  //     },
-  //   ),
-  //   // add more guards here
-  // ];
+  @override
+  late final List<AutoRouteGuard> guards = [
+    AutoRouteGuard.simple((resolver, router) {
+      if (adminBloc.state is Authenticated ||
+          resolver.routeName != AdminProfileRoute.name) {
+        resolver.next();
+      }
+    }),
+  ];
 
   AutoRoute get bookRoutes => AutoRoute(
         page: BooksShellRoute.page,
@@ -79,7 +69,9 @@ class AppRouter extends RootStackRouter {
         ],
       );
 
-  AutoRoute get profileRoutes => AutoRoute(
-        page: ProfileRoute.page,
-      );
+  AutoRoute get profileRoutes =>
+      AutoRoute(page: ProfileShellRoute.page, children: [
+        AutoRoute(page: ProfileRoute.page, path: 'profile'),
+        AutoRoute(page: AdminProfileRoute.page, path: 'admin'),
+      ]);
 }

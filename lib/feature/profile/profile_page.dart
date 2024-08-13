@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:deeplinker/feature/admin/bloc/admin_bloc.dart';
+import 'package:deeplinker/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,33 +11,53 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(
-            height: 60,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+      body: BlocBuilder<AdminBloc, AdminState>(
+        builder: (context, state) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const CircleAvatar(
-                child: Icon(Icons.person),
+              const SizedBox(
+                height: 60,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const CircleAvatar(
+                    child: Icon(Icons.person),
+                  ),
+                  Text(
+                    'John Doe',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                ],
               ),
               Text(
-                'John Doe',
-                style: Theme.of(context).textTheme.titleMedium,
+                  'Admin status: ${state is Authenticated ? 'Granted' : 'Not granted'}'),
+              const SizedBox(
+                height: 20,
               ),
+              ElevatedButton(
+                onPressed: () {
+                  if (state is Authenticated) {
+                    context.read<AdminBloc>().add(Deauthenticate());
+                  } else {
+                    context.read<AdminBloc>().add(Authenticate());
+                  }
+                },
+                child: const Text('Change admin status'),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  context.router.push(const AdminProfileRoute());
+                },
+                child: const Text('Open Admin Page'),
+              )
             ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ElevatedButton(
-              onPressed: () {
-                context.read<AdminBloc>().add(Deauthenticate());
-              },
-              child: const Text('Logout'))
-        ],
+          );
+        },
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:deeplinker/feature/admin/bloc/admin_bloc.dart';
 import 'package:deeplinker/router/navigation_observer.dart';
 import 'package:deeplinker/router/router.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -42,19 +43,13 @@ class _MaterialAppRouterState extends State<MaterialAppRouter> {
       routerConfig: _appRouter.config(
           navigatorObservers: () => [MyNavigationObserver()],
           deepLinkBuilder: (deepLink) {
+            if (kIsWeb) {
+              return deepLink;
+            }
             if (deepLink.uri.fragment == '/' || deepLink.uri.fragment.isEmpty) {
               return DeepLink.defaultPath;
             }
             return DeepLink.path(deepLink.uri.fragment);
-            return const DeepLink.path('/authors-shell-route/authors/2');
-            if (deepLink.path.startsWith('/products')) {
-              // continue with the platform link
-              return deepLink;
-            } else {
-              return DeepLink.defaultPath;
-              // or DeepLink.path('/')
-              // or DeepLink([HomeRoute()])
-            }
           }),
     );
   }
