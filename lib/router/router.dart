@@ -11,10 +11,6 @@ class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
-          path: '*',
-          page: ErrorRoute.page,
-        ),
-        AutoRoute(
           initial: true,
           page: DashboardRoute.page,
           children: [
@@ -22,6 +18,10 @@ class AppRouter extends RootStackRouter {
             authorRoutes,
             profileRoutes,
           ],
+        ),
+        AutoRoute(
+          path: '*',
+          page: ErrorRoute.page,
         ),
       ];
 
