@@ -28,7 +28,7 @@ jobs:
         run: |
           mkdir -p web/.well-known
           echo '[{ "relation": [ "delegate_permission/common.handle_all_urls" ], "target": { "namespace": "android_app", "package_name": "com.example.deeplinker", "sha256_cert_fingerprints": ["${{ secrets.SHA256_CERT_FINGERPRINTS }}"] } }]' > web/.well-known/assetlinks.json
-          echo '{"applinks":{"apps":[],"details":[{"appIDs":["WFGJ7TBT6W.com.example.deeplinker"],"components":[{"\/":"\/books-shell-route\/*","comment":"Matches URL with a path \/books-shell-route"},{"\/":"\/authors-shell-route\/*","comment":"Matches URL with a path \/authors-shell-route"},{"\/":"\/profile-shell-route\/*","comment":"Matches URL with a path \/profile-shell-route"}]}]}}' > web/.well-known/apple-app-site-association
+          echo '{"applinks":{"apps":[],"details":[{"appIDs":["WFGJ7TBT6W.com.example.deeplinker"],"components":[{"/":"/books-shell-route/*","comment":"Matches URL with a path /books-shell-route"},{"/":"/authors-shell-route/*","comment":"Matches URL with a path /authors-shell-route"},{"/":"/profile-shell-route/*","comment":"Matches URL with a path /profile-shell-route"}]}]}}' > web/.well-known/apple-app-site-association
 
       - name: 🛠️ Build the application
         run: flutter build web
